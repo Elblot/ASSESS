@@ -21,22 +21,36 @@ As most of the IoT device are cyclic, the final states are merged with the initi
 ## Contents
 
 **ASSESS/src/** contains the implementation of the ASSESS method.
+
 **ASSESS/traces** contains an example of good formatted traces.
+
 **ASSESS/RESULTS** The folder that will contains the results, **ASSESS/RESULTS/weak** contain the result of the run on the traces of **ASSESS/traces** with the Loose-coupling strategy.
 
 ## Usage
+
 After compilation, with <ASSESS.jar> your runnable jar:
 ```
 java -jar <ASSESS.jar> -d <input> -a <strategy> -o <output>
 ```
-<input> : the folder that contains all your input trace.
-<strategy> : "weak" for loosely-coupling strategy, and "strong" for decoupled strategy.
-Results are generated in the **ASSESS/<output>** folder.
+\<input\> : the folder that contains all your input trace.
+
+\<strategy\> : "weak" for loosely-coupling strategy, and "strong" for decoupled strategy.
+  
+Results are generated in the **ASSESS/\<output\>** folder.
 
 Other options: 
--t shows the duration of each step of the program.
--w show temporal files used.
+
+-t   shows the duration of each step of the program.
+
+-w   show temporal files used.
+
+
+### Change the identifier parameters
+
+Currently, the parameters considered like identifier are "Host" and "Dest", if you want to change them, you need to change them directly in the code in  **ASSESS/src/Correlation.java** and **ASSESS/src/Group.java**.
 
 ## TODO
 
-- [ ] change the name of the strategies option.
+- [ ] change the name of the strategies options.
+
+- [ ] put the Identifier parameter in an option.
