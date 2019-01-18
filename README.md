@@ -15,7 +15,7 @@ As most of the IoT device are cyclic, the final states are merged with the initi
 
 -LTS synchronization : The LTS are modified in function of the chosen strategy, then reduced with the help of kTail.
 
-![Alt text](figures/example.pdf "The ASSESS aproach.")
+![Alt text](figures/example.png "The ASSESS aproach.")
 
 
 ## Contents
