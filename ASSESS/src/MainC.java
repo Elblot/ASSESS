@@ -2,7 +2,6 @@
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -123,15 +122,6 @@ public class MainC {
 			output.close();
 			j++;
 		}
-		/*File f = new File(dest+"/traces/T"+ i + "tmp");
-		while (!f.exists()){
-			i++;
-			f = new File(dest+"/traces/T" + i);
-		}*/
-		
-		//File exist = new File(dest+"/traces/T"+ i + "tmp");
-		
-		//System.out.println(dest);
 	}
 
 	/*get list of traces */   

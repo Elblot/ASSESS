@@ -1,0 +1,9 @@
+call_T3
+command(Host=192.168.1.53;Dest=192.168.1.2;Uri;/json.htm;type= command; param= udevice; idx= 3846; svalue=)
+return_T3
+call_T3
+command(Host=192.168.1.53;Dest=192.168.1.2;Uri;/json.htm;type= command; param= switchlight; idx= 3845; switchcmd= On)
+return_T3
+call_T3
+command(Host=192.168.1.53;Dest=192.168.1.2;Uri;/json.htm;type= command; param= switchlight; idx= 3845; switchcmd= Off)
+return_T3

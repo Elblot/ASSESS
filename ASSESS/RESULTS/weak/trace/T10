@@ -1,0 +1,37 @@
+cameras(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= cameras; rid= )
+command(Host=192.168.1.11;Dest=192.168.1.2;Uri;/json.htm;type= command; param= getlog; lastlogtime=; loglevel= 2)
+devices(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= devices; filter= utility; order= Name)
+devices(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= devices; filter= all; used= true; order= Name)
+cameras(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= cameras; rid= )
+call_T3
+return_T3
+devices(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= devices; filter= utility; order= Name)
+devices(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= devices; filter= all; used= true; order= Name)
+command(Host=192.168.1.11;Dest=192.168.1.2;Uri;/json.htm;type= command; param= getlog; lastlogtime=; loglevel= 2)
+cameras(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= cameras; rid= )
+devices(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= devices; filter= utility; order= Name)
+devices(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= devices; filter= all; used= true; order= Name)
+cameras(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= cameras; rid= )
+command(Host=192.168.1.11;Dest=192.168.1.2;Uri;/json.htm;type= command; param= getlog; lastlogtime=; loglevel= 2)
+call_T7
+return_T7
+devices(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= devices; filter= utility; order= Name)
+devices(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= devices; filter= all; used= true; order= Name)
+cameras(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= cameras; rid= )
+call_T8
+return_T8
+devices(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= devices; filter= utility; order= Name)
+devices(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= devices; filter= all; used= true; order= Name)
+command(Host=192.168.1.11;Dest=192.168.1.2;Uri;/json.htm;type= command; param= getlog; lastlogtime=; loglevel= 2)
+cameras(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= cameras; rid= )
+call_T3
+return_T3
+devices(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= devices; filter= utility; order= Name)
+devices(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= devices; filter= all; used= true; order= Name)
+cameras(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= cameras; rid= )
+call_T3
+return_T3
+command(Host=192.168.1.11;Dest=192.168.1.2;Uri;/json.htm;type= command; param= getlog; lastlogtime=; loglevel= 2)
+devices(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= devices; filter= utility; order= Name)
+devices(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= devices; filter= all; used= true; order= Name)
+cameras(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= cameras; rid= )

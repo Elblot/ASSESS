@@ -1,0 +1,4 @@
+cameras(Host=192.168.1.2;Dest=192.168.1.11;Uri;/json.htm;type= cameras; rid= )
+call_T3
+return_T3
+command(Host=192.168.1.11;Dest=192.168.1.2;Uri;/json.htm;type= command; param= getlog; lastlogtime=; loglevel= 2)

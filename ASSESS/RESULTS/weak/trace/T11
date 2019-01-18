@@ -1,0 +1,9 @@
+call_T8
+command(Host=192.168.1.52;Dest=192.168.1.2;Uri;/json.htm;type= command; param= switchlight; idx= 3848; switchcmd= On)
+return_T8
+call_T8
+command(Host=192.168.1.52;Dest=192.168.1.2;Uri;/json.htm;type= command; param= switchlight; idx= 3848; switchcmd= Off)
+return_T8
+call_T8
+command(Host=192.168.1.52;Dest=192.168.1.2;Uri;/json.htm;type= command; param= udevice; idx= 3847; svalue=)
+return_T8

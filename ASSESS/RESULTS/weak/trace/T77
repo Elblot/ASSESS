@@ -1,0 +1,26 @@
+call_T6
+command(Host=192.168.1.51;Dest=192.168.1.2;Uri;/json.htm;type= command; param= switchlight; idx= 0; switchcmd= On)
+return_T6
+call_T6
+command(Host=192.168.1.51;Dest=192.168.1.2;Uri;/json.htm;type= command; param= switchlight; idx= 0; switchcmd= Off)
+return_T6
+call_T6
+command(Host=192.168.1.51;Dest=192.168.1.2;Uri;/json.htm;type= command; param= switchlight; idx= 0; switchcmd= On)
+call_T3
+return_T3
+return_T6
+call_T6
+command(Host=192.168.1.51;Dest=192.168.1.2;Uri;/json.htm;type= command; param= switchlight; idx= 0; switchcmd= Off)
+return_T6
+call_T6
+command(Host=192.168.1.51;Dest=192.168.1.2;Uri;/json.htm;type= command; param= switchlight; idx= 0; switchcmd= On)
+return_T6
+call_T6
+command(Host=192.168.1.51;Dest=192.168.1.2;Uri;/json.htm;type= command; param= switchlight; idx= 0; switchcmd= Off)
+return_T6
+call_T6
+command(Host=192.168.1.51;Dest=192.168.1.2;Uri;/json.htm;type= command; param= switchlight; idx= 0; switchcmd= On)
+return_T6
+call_T6
+command(Host=192.168.1.51;Dest=192.168.1.2;Uri;/json.htm;type= command; param= switchlight; idx= 0; switchcmd= Off)
+return_T6

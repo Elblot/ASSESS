@@ -1,0 +1,18 @@
+digraph LTS {
+S00[shape=point]
+S1[label=S1,shape=circle];
+S2[label=S2,shape=circle];
+S3[label=S3,shape=circle];
+S4[label=S4,shape=circle];
+S5[label=S5,shape=circle];
+S6[label=S6,shape=circle];
+S00 -> S1
+S1 -> S2[label ="call_C7"];
+S1 -> S4[label ="call_C7"];
+S2 -> S3[label ="command(Host=192.168.1.23;Dest=192.168.1.2;Uri;/json.htm;type= command; param= udevice; idx= 1923; svalue=)"];
+S3 -> S1[label ="return_C7"];
+S4 -> S5[label ="command(Host=192.168.1.23;Dest=192.168.1.2;Uri;/json.htm;type= command; param= udevice; idx= 1923; svalue=)"];
+S5 -> S1[label ="return_C7"];
+S5 -> S6[label ="call_C6"];
+S6 -> S5[label ="return_C6"];
+}

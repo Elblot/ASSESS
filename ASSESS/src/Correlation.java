@@ -79,7 +79,7 @@ public class Correlation {
 	
 
     private static String createDir() {
-    	String tmpName = null, fName = "COnfECt/"+MainC.dest;
+    	String tmpName = null, fName = "RESULTS/"+MainC.dest;
     	int i = 1;
     	File x = new File(fName);
 		while(x.exists()) {

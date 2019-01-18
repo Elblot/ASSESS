@@ -1,0 +1,6 @@
+call_T7
+command(Host=192.168.1.23;Dest=192.168.1.2;Uri;/json.htm;type= command; param= udevice; idx= 1923; svalue=)
+return_T7
+call_T7
+command(Host=192.168.1.23;Dest=192.168.1.2;Uri;/json.htm;type= command; param= udevice; idx= 1923; svalue=)
+return_T7

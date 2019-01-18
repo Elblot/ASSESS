@@ -1,0 +1,35 @@
+digraph LTS {
+S00[shape=point]
+S1[label=S1,shape=circle];
+S2[label=S2,shape=circle];
+S3[label=S3,shape=circle];
+S4[label=S4,shape=circle];
+S5[label=S5,shape=circle];
+S6[label=S6,shape=circle];
+S7[label=S7,shape=circle];
+S8[label=S8,shape=circle];
+S9[label=S9,shape=circle];
+S10[label=S10,shape=circle];
+S11[label=S11,shape=circle];
+S12[label=S12,shape=circle];
+S00 -> S1
+S1 -> S2[label ="call_C6"];
+S1 -> S4[label ="call_C6"];
+S1 -> S8[label ="call_C6"];
+S2 -> S3[label ="command(Host=192.168.1.51;Dest=192.168.1.2;Uri;/json.htm;type= command; param= switchlight; idx= 0; switchcmd= On)"];
+S3 -> S1[label ="return_C6"];
+S3 -> S7[label ="return_C6"];
+S3 -> S9[label ="return_C6"];
+S4 -> S5[label ="command(Host=192.168.1.51;Dest=192.168.1.2;Uri;/json.htm;type= command; param= switchlight; idx= 0; switchcmd= On)"];
+S5 -> S6[label ="call_C5"];
+S5 -> S7[label ="return_C6"];
+S6 -> S5[label ="return_C5"];
+S7 -> S8[label ="call_C6"];
+S8 -> S3[label ="command(Host=192.168.1.51;Dest=192.168.1.2;Uri;/json.htm;type= command; param= switchlight; idx= 0; switchcmd= Off)"];
+S9 -> S2[label ="call_C6"];
+S9 -> S10[label ="call_C6"];
+S10 -> S11[label ="command(Host=192.168.1.51;Dest=192.168.1.2;Uri;/json.htm;type= command; param= switchlight; idx= 0; switchcmd= On)"];
+S11 -> S7[label ="return_C6"];
+S11 -> S12[label ="call_C3"];
+S12 -> S11[label ="return_C3"];
+}
