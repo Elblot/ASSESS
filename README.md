@@ -54,3 +54,5 @@ Currently, the parameters considered like identifier are "Host" and "Dest", if y
 - [ ] change the name of the strategies options.
 
 - [ ] put the Identifier parameter in an option.
+
+- [ ] The name of the file does not correspond to the good model (the file C1 isn't the LTS C1 in the transitions)
