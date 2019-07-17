@@ -1,3 +1,4 @@
+package main;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -95,6 +96,8 @@ public class Correlation {
 		fName = fName+"/trace";
 		x = new File(fName);
 		x.mkdirs();
+		File tmp = new File(fName + "/tmp");
+		tmp.mkdir();
 		return fName;
 	}
 
@@ -106,13 +109,13 @@ public class Correlation {
 			BufferedWriter bw;
     		if (sequences[0].contains("call")) {
     			id = Identifier(sequences[1]);
-    			bw = new BufferedWriter(new FileWriter(new File(fName + "/T" + (file+Integer.parseInt(id)-1)+"tmp"), true));
+    			bw = new BufferedWriter(new FileWriter(new File(fName + "/tmp/T" + (file+Integer.parseInt(id)-1)), true));
     			bw.write(sequences[0]);
     			i = 1;
     		}
     		else {
     			id = Identifier(sequences[0]);
-    			bw = new BufferedWriter(new FileWriter(new File(fName + "/T" + (file+Integer.parseInt(id)-1)+"tmp"), true));
+    			bw = new BufferedWriter(new FileWriter(new File(fName + "/tmp/T" + (file+Integer.parseInt(id)-1)), true));
     		}	
 			for (int j= i+1; j < k; j++) {
 				String n = "0";

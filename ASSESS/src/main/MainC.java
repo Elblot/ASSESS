@@ -1,3 +1,4 @@
+package main;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -8,10 +9,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.comparator.NameFileComparator;
+
 import fsa.FSA;
 import fsa.GenerateDOT;
 import miners.KTail.KTail;
@@ -33,7 +37,7 @@ public class MainC {
 	public static void main(String[] args) throws Exception {
 		final long timeProg1 = System.currentTimeMillis();
 		KtailOptions.setOptions(args);
-		String[] tracesF = getTraces(dir);
+		String[] tracesF = FilesManagement.getTraces(dir);
 		
 		//1st part : Trace analysis
 		final long timeCor1 = System.currentTimeMillis();
@@ -43,7 +47,7 @@ public class MainC {
 		
 		//2nd part : synchronization : grouping
 		final long timeClust1 = System.currentTimeMillis();
-		sortFile();
+		FilesManagement.sortFile(dest);
 		final long timeClust2 = System.currentTimeMillis();
 		Group c = new Group(s);
 		ArrayList<ArrayList<Trace>> alTraces = c.Synchronization();
@@ -58,7 +62,8 @@ public class MainC {
 			if(hide) {
 				test.hideCall();
 			}
-	    	GenerateDOT.printDot(test, MainC.dest+"/C"+i+"tmp.dot");
+			FilesManagement.BuildTi(dest, traces, i);			
+	    	GenerateDOT.printDot(test, dest+"/C"+i+"tmp.dot");
 	    	i++;
 		}
 		final long timeKTail2 = System.currentTimeMillis();
@@ -68,7 +73,7 @@ public class MainC {
 		
 		int j;
 		Pattern pat = Pattern.compile(".*C\\d+tmp.dot");
-		File dossier = new File(MainC.dest);
+		File dossier = new File(dest);
 		if (!dossier.exists()) {
 		}
 		File[] racine = dossier.listFiles();
@@ -108,36 +113,4 @@ public class MainC {
 		}
 	}
 	
-	private static void sortFile() throws IOException {
-		File repertoire = new File(dest+"/trace/");
-		File[] files = repertoire.listFiles();
-		int j = 1;
-		for (File f: files) {
-			InputStream input = new FileInputStream(f);
-			File out = new File(dest+"/trace/T"+j);
-			OutputStream output = new FileOutputStream(out);
-			IOUtils.copy(input, output);
-			f.delete();
-			input.close();
-			output.close();
-			j++;
-		}
-	}
-
-	/*get list of traces */   
-    private static String[] getTraces(String dir){
-    	File d = new File(dir);
-    	String[] traces = null;
-    	if (d.exists()) {
-    		if (d.isDirectory()) {
-        		traces = d.list();
-        		String[] tracesP = new String[traces.length];
-        		for(int i = 0; i<traces.length; i++) {
-        			tracesP[i] = MainC.dir+"/"+traces[i];
-        		}
-        		return tracesP;
-    		}
-    	}
-    	return traces;
-    }
 }

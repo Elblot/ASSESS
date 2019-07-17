@@ -1,3 +1,4 @@
+package main;
 /*
  * This code is in part based on Clemens Hammacher's code.
  * 
