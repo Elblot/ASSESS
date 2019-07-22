@@ -45,7 +45,7 @@ public class Correlation {
 			extract(id, sequences, j, fName);
 			j+=identifiers.size();
 		}
-		
+		System.out.println("identifiers = " + Arrays.deepToString(identifiers.toArray()));	
 		return fName;
 	}
 	
@@ -181,7 +181,7 @@ public class Correlation {
     	}
     	int d = sequence.indexOf("Dest=");
     	if (d != -1) {
-    		if (sequence.indexOf(";", d+5) > 0) {
+    		if ((sequence.indexOf(";", d+5) > 0) & (sequence.indexOf(";", d+5) < (sequence.indexOf(")", d+5)))) {
     			Dest = sequence.substring(d + 5, sequence.indexOf(";", d+5));
     		}
     		else {
@@ -191,6 +191,7 @@ public class Correlation {
     	String[] ID = {Host, Dest};
     	Arrays.sort(ID);
     	String n = Arrays.deepToString(ID);
+    	System.out.println(n);;
     	return Integer.toString(identifiers.indexOf(n)+1);
     }
     
