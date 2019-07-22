@@ -89,7 +89,12 @@ public class Group {
 		}
 		int d = event.indexOf("Dest=");
 		if (d != -1) {
-			Dest = event.substring(d + 5, event.indexOf(";", d + 5));
+			if (event.indexOf(";", d+5) > 0) {
+    			Dest = event.substring(d + 5, event.indexOf(";", d+5));
+    		}
+    		else {
+    			Dest = event.substring(d + 5, event.indexOf(")", d+5));
+    		}
 		}
 		String[] ID = { Host, Dest };
 		Arrays.sort(ID);

@@ -181,7 +181,12 @@ public class Correlation {
     	}
     	int d = sequence.indexOf("Dest=");
     	if (d != -1) {
-    		Dest = sequence.substring(d + 5, sequence.indexOf(";", d+5));
+    		if (sequence.indexOf(";", d+5) > 0) {
+    			Dest = sequence.substring(d + 5, sequence.indexOf(";", d+5));
+    		}
+    		else {
+    			Dest = sequence.substring(d + 5, sequence.indexOf(")", d+5));
+    		}
     	}
     	String[] ID = {Host, Dest};
     	Arrays.sort(ID);
@@ -212,11 +217,21 @@ public class Correlation {
     	}
     	int d1 = event1.indexOf("Dest=");
     	if (d1 != -1) {
-    		Dest1 = event1.substring(d1 + 5, event1.indexOf(";", d1+5));
+    		if (event1.indexOf(";", d1+5) > 0) {
+    			Dest1 = event1.substring(d1 + 5, event1.indexOf(";", d1+5));
+    		}
+    		else {
+    			Dest1 = event1.substring(d1 + 5, event1.indexOf(")", d1+5));
+    		}
     	}
     	int d2 = event2.indexOf("Dest=");
     	if (d2 != -1) {
-    		Dest2 = event2.substring(d2 + 5, event2.indexOf(";", d2+5));
+    		if (event2.indexOf(";", d2+5) > 0) {
+    			Dest2 = event2.substring(d2 + 5, event2.indexOf(";", d2+5));
+    		}
+    		else {
+    			Dest2 = event2.substring(d2 + 5, event2.indexOf(")", d2+5));
+    		}
     	}
     	String[] ID1 = {Host1, Dest1};
     	String[] ID2 = {Host2, Dest2};
