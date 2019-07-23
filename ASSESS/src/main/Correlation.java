@@ -44,8 +44,7 @@ public class Correlation {
 			int id = Integer.parseInt(Identifier(sequences[0]));
 			extract(id, sequences, j, fName);
 			j+=identifiers.size();
-		}
-		System.out.println("identifiers = " + Arrays.deepToString(identifiers.toArray()));	
+		}	
 		return fName;
 	}
 	
@@ -191,7 +190,6 @@ public class Correlation {
     	String[] ID = {Host, Dest};
     	Arrays.sort(ID);
     	String n = Arrays.deepToString(ID);
-    	System.out.println(n);;
     	return Integer.toString(identifiers.indexOf(n)+1);
     }
     
