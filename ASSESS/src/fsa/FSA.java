@@ -25,14 +25,8 @@ package fsa;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Queue;
 import java.util.Set;
-import java.util.TreeMap;
 import java.util.Stack;
 import java.math.BigInteger;
 
@@ -238,6 +232,8 @@ public class FSA implements Serializable{
 		this.states.put(state.getName(), state);
 		//System.out.println("Add state "+state);
 	}
+	
+	@SuppressWarnings("unlikely-arg-type")
 	public void removeState(State state) {
 		if (initialState==state){
 			initialState=null;
@@ -548,7 +544,6 @@ public class FSA implements Serializable{
 	
 	public int chercherPlusProcheLongueur(int l){
 		//System.out.println("cherche "+l);
-		int cherche=l;
 		int min=-1;
 		int lmin=-1;
 		for(int i=0;i<this.possibleLengths.size();i++){
@@ -793,7 +788,6 @@ public class FSA implements Serializable{
 	
 	// Generation uniforme de traces a partir du FSA
 	public Trace genereTrace() {
-		EpsilonTransitionChecker checker=new EpsilonTransitionChecker();
 		Trace trace=new Trace();
 		//TraceGenResult trg=new TraceGenResult();
 		//trg.addTrace(trace);
@@ -802,10 +796,7 @@ public class FSA implements Serializable{
 		while(!ok){
 			ArrayList<Transition> trans=current.getSuccesseurs();
 			int nb=trans.size();
-			boolean fin_possible=false;
 			if (finalStates.contains(current)){
-				//System.out.println(current);
-				fin_possible=true;
 				nb++;
 			}
 			int choix=(int)(Math.random()*nb);
@@ -820,7 +811,7 @@ public class FSA implements Serializable{
 					System.out.println("Probleme => Trigger non Statement... Que faire ?");
 				}
 				else{
-					if(!checker.isEpsilonTransition(choisie)){
+					if(EpsilonTransitionChecker.isEpsilonTransition(choisie)){
 						Statement st=(Statement)trig;
 						trace.add(st);
 						//System.out.println("Add "+st);

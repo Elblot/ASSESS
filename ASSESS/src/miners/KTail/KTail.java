@@ -24,10 +24,8 @@ package miners.KTail;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 
-import miners.FSAminer;
 import traces.Statement;
 import traces.Method;
 import traces.Trace;
@@ -43,8 +41,7 @@ import fsa.Transition;
  * fixed and modified by Elliott Blot
  *
  */
-public class KTail implements FSAminer{
-	private static final long serialVersionUID = 1L;
+public class KTail{
 	int horizon;
 	String algo;
 
@@ -62,7 +59,7 @@ public class KTail implements FSAminer{
 		return getName();
 	}
 
-	@Override
+	
 	public FSA transform(ArrayList<Trace> traces) {
 		StateNode root=new StateNode(); 
 		//System.out.println(this.toString());

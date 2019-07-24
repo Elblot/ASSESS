@@ -30,17 +30,14 @@ import java.util.ArrayList;
 
 
 import traces.Element;
-import traces.Statement;
 
 import java.util.HashSet;
 
-import core.Sequence;
 
 import fsa.FSA;
 import fsa.State;
 import fsa.Transition;
 
-import miners.temporalKTail.TemporalState;
 /**
  * Classe qui represente un etat dans un automate
  * @author Neko
@@ -338,153 +335,5 @@ public class State extends Element implements Serializable {
 		//Integer sco=new Integer(score);
 		scores_sous_traces.put(size,score);
 	}
-	
-	
-	// Used by TemporalKTail (approx by LO)
-	public HashSet<Sequence> getPossibleStatements(boolean forward){
-		HashSet<State> vus=new HashSet<State>();
-		vus.add(this);
-		return getPossibleStatements(forward,vus);
-	}
-	private HashSet<Sequence> getPossibleStatements(boolean forward, HashSet<State> vus){
-		nbVisitsStates++;
-		ArrayList<Transition> tr=null;
-		if (forward){
-			tr=this.getSuccesseurs();
-		}
-		else{
-			tr=this.getPredecesseurs();
-		}
-		HashSet<Sequence> ret=new HashSet<Sequence>();
-		for(Transition t:tr){
-			Statement st=(Statement)t.getTrigger();
-			String ch=st.getText();
-			ret.add(TemporalState.root.getForwardChild(ch));
-			nbManipSeq++;
-			State s=null;
-			if (forward){
-				s=t.getTarget();
-			}
-			else{
-				s=t.getSource();
-			}
-			if (!vus.contains(s)){
-				vus.add(s);
-				ret.addAll(s.getPossibleStatements(forward,vus));
-			}
-		}
-		return(ret);
-	}
-	
-	// Used by TemporalKTail (exact by LO)
-	public boolean checkRequired(Sequence pre,Sequence post, boolean forward){
-		HashSet<State> vus=new HashSet<State>();
-		vus.add(this);
-		return checkRequired(pre,post,forward,vus);
-	}
-	private boolean checkRequired(Sequence pre,Sequence post, boolean forward, HashSet<State> vus){
-		nbVisitsStates++;
-		ArrayList<Transition> tr=null;
-		if (forward){
-			tr=getSuccesseurs();
-		}
-		else{
-			tr=getPredecesseurs();
-		}
-		for(Transition t:tr){
-			nbManipSeq++;
-			Statement st=(Statement)t.getTrigger();
-			String ch=st.getText();
-			Sequence s=Sequence.root.getForwardChild(ch);
-			if(s==null){
-				throw new RuntimeException("s null !!");
-			}
-			if(pre.equals(s)){
-				return(true);
-			}
-			if(post.equals(s)){
-				continue;
-			}
-			State state=null;
-			if (forward){
-				state=t.getTarget();
-			}
-			else{
-				state=t.getSource();
-			}
-			if (!vus.contains(state)){
-				HashSet<State> nvus=new HashSet<State>(vus);
-				nvus.add(state);
-				boolean ret=state.checkRequired(pre,post,forward,nvus);
-				if (ret){
-					return true;
-				}
-			}
-			
-		}
-		return false;
-	}
-	
-	// Used by TemporalKTail (exact by LO)
-	public boolean checkSureStatement(Sequence post, FSA lts, boolean forward, HashSet<TemporalState> initial_states, HashSet<TemporalState> final_states){
-		HashSet<State> vus=new HashSet<State>();
-		vus.add(this);
-		return checkSureStatement(post,lts,forward,vus, initial_states, final_states);
-	}
-	
-	private boolean checkSureStatement(Sequence post, FSA lts, boolean forward, HashSet<State> vus, HashSet<TemporalState> initial_states, HashSet<TemporalState> final_states){
-		nbVisitsStates++;
-		if ((forward) && (final_states.contains(this))){
-			//System.out.println("Pas vu "+post);
-			return(false);
-		}
-		if ((!forward) && (initial_states.contains(this))){
-			//System.out.println("Pas vu "+post);
-			return(false);
-		}
-		ArrayList<Transition> tr=null;
-		if (forward){
-			tr=getSuccesseurs();
-		}
-		else{
-			tr=getPredecesseurs();
-		}
-		boolean ret=true;
-		for(Transition t:tr){
-			nbManipSeq++;
-			Statement st=(Statement)t.getTrigger();
-			String ch=st.getText();
-			Sequence seq=Sequence.root.getForwardChild(ch);
-			if(seq==null){
-				throw new RuntimeException("s null !!");
-			}
-			if(post.equals(seq)){
-				continue;
-			}
-			
-			State s=null;
-			if (forward){
-				s=t.getTarget();
-			}
-			else{
-				s=t.getSource();
-			}
-			if (!vus.contains(s)){
-				HashSet<State> nvus=new HashSet<State>(vus);
-				nvus.add(s);
-				ret=s.checkSureStatement(post,lts,forward,nvus,initial_states,final_states);
-				if(!ret){return(false);}
-			}
-		}
-		if(tr.size()==0){
-			if(forward){
-				throw new RuntimeException("Pas de transition et pas final!!");
-			}
-			else{
-				throw new RuntimeException("Pas de transition et pas initial!!");
-			}
-		}
-		return(ret);
-	}
-	
+		
 }

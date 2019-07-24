@@ -6,8 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import smile.clustering.HierarchicalClustering;
-import smile.clustering.linkage.SingleLinkage;
 import traces.Method;
 import traces.Statement;
 import traces.Trace;
@@ -16,7 +14,6 @@ import traces.Trace;
 
 public class Group {
 
-	double similarity = 0.4; // clustering initial traces
 	String s;
 	int sizeTracei;
 	int[] clusters;
@@ -100,22 +97,6 @@ public class Group {
 		Arrays.sort(ID);
 		return ID;
 	}
-
-	public ArrayList<ArrayList<Trace>> clustering() throws Exception{
-		ArrayList<ArrayList<String>> newtraces = addFileClust();
-		try {
-			double[][] matrix = TraceSimilarity.matrix(newtraces);
-			SingleLinkage link = null;
-			link = new SingleLinkage(matrix);
-			HierarchicalClustering clusterise = new HierarchicalClustering(link);
-			clusters = clusterise.partition(similarity);
-		}catch (IllegalArgumentException e) {
-			clusters = new int[newtraces.size()];
-		}
-		ArrayList<ArrayList<Trace>> alTraces = finalClustering(clusters, newtraces);
-		return alTraces;
-	}
-
 
 	//read file to stock lines in an ArrayList.
 	public ArrayList<ArrayList<String>> addFileClust() throws Exception {

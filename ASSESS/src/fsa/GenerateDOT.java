@@ -49,14 +49,14 @@ import traces.Statement;
  **/
 
 public class GenerateDOT {
-	
+
 	static PrintStream out;
-	
+
 	public GenerateDOT(){}
 
-/**
-* Print DOT file
-*/
+	/**
+	 * Print DOT file
+	 */
 	public static void printDot(FSA lts, String fileName) {
 
 		System.out.println("Ecriture dot file dans "+fileName);
@@ -87,16 +87,16 @@ public class GenerateDOT {
 
 				/*if (source.equals(initialState)) {
 					SS = "S0";
-					
-					
+
+
 				} else {*/
-					if (!names.containsKey(ssName)) {
-						names.put(ssName, ssName);
-						SS = ssName;
-						num = num + 1;
-					} else {
-						SS = (String) names.get(ssName);
-					}
+				if (!names.containsKey(ssName)) {
+					names.put(ssName, ssName);
+					SS = ssName;
+					num = num + 1;
+				} else {
+					SS = (String) names.get(ssName);
+				}
 				//}
 
 				String stName = trs.getTarget().getName();
@@ -104,13 +104,13 @@ public class GenerateDOT {
 				/*if (target.equals(initialState)) {
 					TS = "S0";
 				} else {*/
-					if (!names.containsKey(stName)) {
-						names.put(stName, stName);
-						TS = stName;
-						num = num + 1;
-					} else {
-						TS = (String) names.get(stName);
-					}
+				if (!names.containsKey(stName)) {
+					names.put(stName, stName);
+					TS = stName;
+					num = num + 1;
+				} else {
+					TS = (String) names.get(stName);
+				}
 				//}
 
 				Trigger ev = trs.getTrigger();
@@ -126,18 +126,18 @@ public class GenerateDOT {
 					System.out.println("target ="+target+" "+target.getAdress());
 					State s=lts.getFinalState();
 					System.out.println("s ="+s+" "+s.getAdress());
-					
+
 				}*/
-				
+
 				//System.out.println("source ="+source+";");
-				
+
 				if (lts.getFinalStates().contains(source)) {
 					//System.out.println("ok source");
 					out.println(SS + "[shape=doublecircle];");
 				}
 				if (lts.getFinalStates().contains(target)) {
 					//System.out.println("ok target");
-					
+
 					out.println(TS + "[shape=doublecircle];");
 				}
 
@@ -155,22 +155,21 @@ public class GenerateDOT {
 	 * Read a lts from a dot file
 	 **/
 	public static FSA readFromDot(String filename) {
-		// TODO lack of file format control
 		FSA result = new FSA();
 		State initialState;
-		State finalState;
 		ArrayList<State> finalStates = new ArrayList<State>();
 		Set<Transition> transitions = new HashSet<Transition>();
-		
+
 		String line = null;
 		String[] sourceTarget = null;
 		String[] targetTrigger = null;
 		String[] senderReceiverMethod = null;
 		String[] receiverMethod = null;// used for long name of a class with
-										// many dots
+		// many dots
 
 		try {
 			File dotFile = new File(filename);
+			@SuppressWarnings("resource")
 			BufferedReader bf = new BufferedReader(new FileReader(dotFile));
 
 			for (int i = 0; i < 3; i++) {// jump off the first two line
@@ -207,7 +206,7 @@ public class GenerateDOT {
 							sourcestate=new State(sourceTarget[0]);
 							result.addState(sourcestate);
 						}
-						
+
 						// target state and trigger
 						targetTrigger = sourceTarget[1]
 								.split("\\[label \\=\"|\\(\\)\"\\];");
@@ -221,7 +220,7 @@ public class GenerateDOT {
 								targetstate=new State(targetTrigger[0]);
 								result.addState(targetstate);
 							}
-							
+
 
 							// split trigger and sender receiver
 							senderReceiverMethod = targetTrigger[1]
@@ -274,12 +273,12 @@ public class GenerateDOT {
 						sourcestate=new State(sourceTarget[0]);
 						result.addState(sourcestate);
 					}
-					
+
 					finalStates.add(sourcestate);
-					
+
 					//result.setFinalState(finalState);
 
-					
+
 				}
 
 				line = bf.readLine();
@@ -294,14 +293,14 @@ public class GenerateDOT {
 
 		result.addTransitions(new ArrayList<Transition>(transitions));
 		result.setFinalStates(finalStates);
-		
-		
+
+
 		return result;
 
 	}
-	
+
 	public static void main(String[] args){
-		
+
 		FSA fsa=GenerateDOT.readFromDot("ATM/Model/blocs_sd_model.dot");
 		GenerateDOT.printDot(fsa, "ATM/Model/blocs_sd_model2.dot");
 	}
