@@ -26,7 +26,7 @@ public class Correlation {
 		
 		//System.out.println(identifiers);
 		buildID(alFiles);
-		//System.out.println(identifiers);
+		System.out.println(identifiers);
 		//int j = 1;
 		for(ArrayList<String> alFile:alFiles) {
 			String[] sequences = new String[0];
@@ -171,7 +171,56 @@ public class Correlation {
     	}
     }
 
+    
+    /*
+    // only Host
      private static String Identifier(String sequence) {
+    	String Host = "????";
+    	int h = sequence.indexOf("Host=");
+    	if (h != -1) {
+    		Host = sequence.substring(h + 5, sequence.indexOf(";", h+5));
+    		
+    	}
+    	String[] ID = {Host};
+    	Arrays.sort(ID);
+    	String n = Arrays.deepToString(ID);
+    	return Integer.toString(identifiers.indexOf(n)+1);
+    }
+    
+     
+ 
+    // get the correlation coefficient between two events based on ID 
+    private static float coefficientID(String event1, String event2) {
+    	String Host1 = "????";
+    	String Host2 = "????";
+    	int h1 = event1.indexOf("Host=");
+    	if (h1 != -1) {
+    		Host1 = event1.substring(h1 + 5, event1.indexOf(";", h1+5));
+    	}
+    	int h2 = event2.indexOf("Host=");
+    	if (h2 != -1) {
+    		Host2 = event2.substring(h2 + 5, event2.indexOf(";", h2+5));
+    		// 5 is the length of "Host=" 
+    	}
+    	String[] ID1 = {Host1};
+    	String[] ID2 = {Host2};
+    	Arrays.sort(ID1);
+    	Arrays.sort(ID2);	
+    	if (!identifiers.contains(Arrays.deepToString(ID1))) {
+    		identifiers.add(Arrays.deepToString(ID1));
+    	}
+    	if (!identifiers.contains(Arrays.deepToString(ID2))) {
+    		identifiers.add(Arrays.deepToString(ID2));
+    	}
+    	if (Arrays.equals(ID1, ID2)) {
+    		return 1;
+    	}
+    	return 0;
+    }*/
+   
+    
+     // Host + Dest
+    private static String Identifier(String sequence) {
     	String Host = "????";
     	String Dest = "????";
     	int h = sequence.indexOf("Host=");
@@ -194,12 +243,8 @@ public class Correlation {
     }
     
      
-    /*  
-     * 
-     * put below the identifier parameters 
-     *  
-     * */ 
-    /* get the correlation coefficient between two events based on ID */
+  
+    // get the correlation coefficient between two events based on ID 
     private static float coefficientID(String event1, String event2) {
     	String Host1 = "????";
     	String Dest1 = "????";
@@ -212,7 +257,7 @@ public class Correlation {
     	int h2 = event2.indexOf("Host=");
     	if (h2 != -1) {
     		Host2 = event2.substring(h2 + 5, event2.indexOf(";", h2+5));
-    		/* 5 is the length of "Host=" */
+    		// 5 is the length of "Host="
     	}
     	int d1 = event1.indexOf("Dest=");
     	if (d1 != -1) {

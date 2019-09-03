@@ -66,7 +66,29 @@ public class Group {
 	 * change below to fit the identifiers parameter
 	 * 
 	 */
-	/* get all the n of C_n */
+	/* get all the n of C_n *//*
+	public static String[] GetNumber(ArrayList<String> trace) {
+		String Host = "????";
+		String event = "";
+		int index = 0;
+		while (event == "") {
+			if (trace.get(index).contains("call_") || trace.get(index).contains("return_")) {
+				index++;
+			} else {
+				event = trace.get(index);
+			}
+		}
+		int h = event.indexOf("Host=");
+		if (h != -1) {
+			Host = event.substring(h + 5, event.indexOf(";", h + 5));
+			// 5 is the length of "Host=" 
+		}
+		String[] ID = { Host };
+		Arrays.sort(ID);
+		return ID;
+	}*/
+	
+	
 	public static String[] GetNumber(ArrayList<String> trace) {
 		String Host = "????";
 		String Dest = "????";
@@ -82,7 +104,7 @@ public class Group {
 		int h = event.indexOf("Host=");
 		if (h != -1) {
 			Host = event.substring(h + 5, event.indexOf(";", h + 5));
-			/* 5 is the length of "Host=" */
+			// 5 is the length of "Host=" 
 		}
 		int d = event.indexOf("Dest=");
 		if (d != -1) {
