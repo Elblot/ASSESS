@@ -90,6 +90,31 @@ public class Group {
 	
 	
 	public static String[] GetNumber(ArrayList<String> trace) {
+		String idx = "????";
+		String event = "";
+		int index = 0;
+		while (event == "") {
+			if (trace.get(index).contains("call_") || trace.get(index).contains("return_")) {
+				index++;
+			} else {
+				event = trace.get(index);
+			}
+		}
+		int d = event.indexOf("idx=");
+		if (d != -1) {
+			if (event.indexOf("@", d+4) > 0) {
+    			idx = event.substring(d + 4, event.indexOf("@", d+4));
+    		}
+    		else {
+    			idx = event.substring(d + 4, event.indexOf(")", d+4));
+    		}
+		}
+		String[] ID = {idx};
+		Arrays.sort(ID);
+		return ID;
+	}
+	
+	/*public static String[] GetNumber(ArrayList<String> trace) {
 		String Host = "????";
 		String Dest = "????";
 		String event = "";
@@ -119,6 +144,7 @@ public class Group {
 		Arrays.sort(ID);
 		return ID;
 	}
+*/
 
 	//read file to stock lines in an ArrayList.
 	public ArrayList<ArrayList<String>> addFileClust() throws Exception {
